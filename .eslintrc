@@ -1,0 +1,94 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["flowtype", "react"],
+  "rules": {
+    "react/display-name": [0],
+    "no-console": [
+      "error",
+      {
+        "allow": ["log", "warn", "error"]
+      }
+    ],
+    "react/prop-types": 0,
+    "linebreak-style": ["error", "unix"],
+    "semi": ["error", "always"],
+    "strict": "error",
+    "max-nested-callbacks": ["error", 3],
+    "max-params": ["error", 5],
+    "max-depth": ["error", 3],
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignoreStrings": true,
+        "ignoreComments": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "require-await": "error",
+    "no-func-assign": "error",
+    "object-shorthand": [
+      "error",
+      "methods",
+      {
+        "avoidExplicitReturnArrows": false
+      }
+    ],
+    "object-curly-spacing": ["error", "always"],
+    "react/jsx-curly-spacing": ["error", "always"],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "no-useless-return": "error",
+    "no-else-return": "error",
+    "no-return-await": "error",
+    "no-var": "error",
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "flowtype/space-after-type-colon": [
+      "error",
+      "always",
+      {
+        "allowLineBreak": true
+      }
+    ],
+    "react/jsx-indent": ["error", 2],
+    "react/require-optimization": ["off"],
+    "react/no-unused-prop-types": [2],
+    "react/no-unused-state": [2],
+    "no-useless-constructor": ["error"]
+  },
+  "settings": {
+    "react": {
+      "version": "16.0",
+      "flowVersion": "0.53"
+    },
+    "propWrapperFunctions": ["forbidExtraProps"]
+  },
+  "globals": {
+    "describe": true,
+    "it": true
+  }
+}
