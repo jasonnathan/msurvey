@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "commonjs": true,
@@ -13,7 +14,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["flowtype", "react"],
+  "plugins": ["flowtype", "react", "babel"],
   "rules": {
     "react/display-name": [0],
     "no-console": [

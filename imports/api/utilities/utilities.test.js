@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { getValues, getMax, getAxisText } from './index.js';
+import { getValues, getMaxValue, getAxisText } from './index.js';
 import data, { allValues, oneSetValue } from './data.js';
 
 describe('getValues()', function() {
@@ -11,12 +11,12 @@ describe('getValues()', function() {
   });
 });
 
-describe('getMax()', function() {
+describe('getMaxValue()', function() {
   it('should find the largest {value} property val in an array of an array of objects', function() {
-    expect(getMax(data)).toEqual(0.59);
+    expect(getMaxValue(data)).toEqual(0.59);
   });
   it('should find the largest {value} property val in an array of objects', function() {
-    expect(getMax(data[0])).toEqual(0.59);
+    expect(getMaxValue(data[0])).toEqual(0.59);
   });
 });
 

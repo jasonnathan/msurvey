@@ -1,15 +1,30 @@
 import { pluck, flatten, compose } from 'ramda';
 import { max } from 'd3-array';
 
-export const get = key => pluck(key);
-export const getValue = get('value');
-export const getAxis = get('axis');
-export const getValues = data =>
-  flatten(Array.isArray(data[0]) ? data.map(getValue) : getValue(data));
-export const getAxisText = data =>
-  getAxis(Array.isArray(data[0]) ? data[0] : data);
+export const getValue = pluck('value');
+export const getAxis = pluck('axis');
 
-export const getMax = compose(
+export function getValues(data) {
+  return flatten(
+    Array.isArray(data[0]) 
+      ? data.map(getValue) 
+      : getValue(data)
+    );
+}
+
+export function getAxisText(data) {
+  return getAxis(
+    Array.isArray(data[0]) 
+      ? data[0] 
+      : data
+    );
+}
+
+export const getMaxValue = compose(
   max,
   getValues
 );
+
+export function computeRadius({ factor, w, h }) {
+  return factor * Math.min(w / 2, h / 2);
+}
