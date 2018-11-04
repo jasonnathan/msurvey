@@ -1,13 +1,16 @@
 import React, { PureComponent } from 'react';
 import { schemeCategory10 } from 'd3-scale-chromatic';
+import Dimensions from './Dimensions';
 
 import connectStateToGraph from './connectStateToGraph';
 
 // import data from '../api/utilities/data';
 // import { getAxisText } from '../api/utilities';
-import RadarGraph from './RadarGraph';
+import SpiderGraph from './SpiderGraph';
 export default class App extends PureComponent {
   render() {
+    const { width, height } = Dimensions.get('window');
+    const dimToUse = width > height ? height : width;
     // const {
     //   w,
     //   h,
@@ -17,10 +20,10 @@ export default class App extends PureComponent {
     //   TranslateY
     // } = this.props;
     return (
-      <RadarGraph
+      <SpiderGraph
         { ...connectStateToGraph() }
-        width={ 500 }
-        height={ 500 }
+        width={ dimToUse > 600 ? 600 : dimToUse }
+        height={ dimToUse > 600 ? 600 : dimToUse }
         padding={ 120 }
         navigation={ {} }
         setEditingProduct={ () => {} }
