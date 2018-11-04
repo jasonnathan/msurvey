@@ -1,5 +1,11 @@
+/**
+ * @package scenes/SentimentView/connectStateToGraph
+ * @copyright Jason J. Nathan
+ * @author Jason Nathan <jjnathanjr+msurvey@gmail.com>  {@link https://www.jasonnathan.com}
+ * @version  1.0
+ */
 import { max } from 'ramda';
-import { maxValueInObj } from './SpiderGraph';
+import { maxValueInObj } from '/imports/ui/features/SpiderGraph';
 
 const keyLabels = [
   { key: 'Food', label: 'Food', align: 'middle' },

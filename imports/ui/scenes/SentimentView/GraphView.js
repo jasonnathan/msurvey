@@ -5,9 +5,9 @@
  * @version  1.0
  */
 import React, { PureComponent } from 'react';
-import Dimensions from './components/Dimensions';
+import Dimensions from '/imports/ui/components/Dimensions';
 import connectStateToGraph from './connectStateToGraph';
-import SpiderGraph from '../features/SpiderGraph';
+import SpiderGraph from '/imports/ui/features/SpiderGraph';
 
 export default class GraphView extends PureComponent {
   render() {
