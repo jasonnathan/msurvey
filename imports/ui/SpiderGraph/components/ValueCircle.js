@@ -9,7 +9,7 @@ type Props = {
   fillPressed?: string,
   point: Point,
   strokeColor?: string,
-  fillColor?: string
+  // fillColor?: string
 };
 
 type State = {
@@ -37,7 +37,7 @@ export default class PlusIcon extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { point, strokeColor, fillColor } = this.props;
+    const { point, strokeColor } = this.props;
     return (
       <g>
         <circle

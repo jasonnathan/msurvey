@@ -1,12 +1,5 @@
-// import { connect } from 'react-redux';
-// import createSelector from 'ramda-reselect';
 import { max } from 'ramda';
 import { maxValueInObj } from './SpiderGraph';
-// import {
-//   // mapFromFeaturesToGraphData,
-//   mapFromCBRToGraph
-// } from './components/Spider';
-// import type { Value, KeyLabels } from "./types.flow";
 
 const keyLabels = [
   { key: 'Food', label: 'Food', align: 'middle' },
@@ -30,8 +23,6 @@ const mockedZero = {
   Rest: 0,
   Toilets: 0
 };
-
-// const getMaxDomain = l => l.reduce(compose(maxValueInObj, prop("values")));
 
 const graphPropsSelector = () => {
   const recommendedValues = mockedZero;

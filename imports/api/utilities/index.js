@@ -5,19 +5,15 @@ export const getValue = pluck('value');
 export const getAxis = pluck('axis');
 
 export function getValues(data) {
-  return flatten(
-    Array.isArray(data[0]) 
-      ? data.map(getValue) 
-      : getValue(data)
-    );
+  return flatten(Array.isArray(data[0]) 
+    ? data.map(getValue) 
+    : getValue(data));
 }
 
 export function getAxisText(data) {
-  return getAxis(
-    Array.isArray(data[0]) 
-      ? data[0] 
-      : data
-    );
+  return getAxis(Array.isArray(data[0]) 
+    ? data[0] 
+    : data);
 }
 
 export const getMaxValue = compose(

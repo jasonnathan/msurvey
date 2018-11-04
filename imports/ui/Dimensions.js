@@ -7,9 +7,9 @@
 const debounce = require('debounce');
 
 const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
+  typeof window !== 'undefined'
+  && window.document
+  && window.document.createElement
 );
 
 const win = canUseDOM ? window : { screen: {} };

@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+// import { schemeCategory10 } from 'd3-scale-chromatic';
 import { propEq, pluck } from 'ramda';
 import type { Tick, Point, Value, DataSet } from '../types.flow';
 import Axis from './Axis';
@@ -13,7 +14,7 @@ type Props = {
   },
   width: number,
   height: number,
-  padding: number,
+  // padding: number,
   domainMax: number,
 
   scales: { [variableKey: string]: Tick },

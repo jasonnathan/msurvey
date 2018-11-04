@@ -5,45 +5,41 @@ import Tween from 'rc-tween-one';
 import SvgMorphPlugin from 'rc-tween-one/lib/plugin/SvgMorphPlugin';
 
 import ValueCircle from './ValueCircle';
-import type { Point, DataSet } from '../types.flow';
+import type { Point } from '../types.flow';
 
 Tween.plugins.push(SvgMorphPlugin);
 
 type Props = {
-  points: Array<Point>,
-  set: DataSet
+  points: Array<Point>
+  // set: DataSet
   // makeHandleOnPress: string => () => void,
 };
 
 export default class SpiderCircle extends React.PureComponent<Props> {
+  pointsToPlot = reject(({ value }) => !value, this.props.points);
+
+  startingPoints = flatten(this.pointsToPlot.map(() => [0, 0])).join(',');
+
+  polygonPoints = flatten(this.pointsToPlot.map(({ x, y }) => [x, y])).join(',');
+
+  animation = {
+    points: this.polygonPoints,
+    ease: 'easeInOutQuad',
+    repeat: false,
+    duration: 700
+  };
+
   render() {
-    const { points, set } = this.props;
-    const pointsToPlot = reject(({ value }) => !value, points);
-    const startingPoints = flatten(pointsToPlot.map(() => [0, 0])).join(',');
-    const polygonPoints = flatten(
-      pointsToPlot.map(point => [point.x, point.y])
-    ).join(',');
     const colors = {
-      polygonColor: '#8c8c8c',
-      strokeColor: '#8c8c8c',
+      polygonColor: '#f76767',
+      strokeColor: '#fb0e2a',
       fillColor: 'white'
     };
-    if (set.isAdded) {
-      colors.polygonColor = '#f76767';
-      colors.strokeColor = '#fb0e2a';
-    }
-    if (set.isExist) {
-      colors.polygonColor = '#fb0e2a';
-      colors.strokeColor = '#fb0e2a';
-      colors.fillColor = '#fb0e2a';
-    }
 
-    console.log(polygonPoints);
-
-    return pointsToPlot.length ? (
+    return this.pointsToPlot.length ? (
       <g>
         <Tween
-          animation={ [{ points: startingPoints }, { points: polygonPoints }] }
+          animation={ this.animation }
           style={ {
             fill: colors.polygonColor,
             strokeWidth: 1,
@@ -51,19 +47,10 @@ export default class SpiderCircle extends React.PureComponent<Props> {
             fillOpacity: 0.5
           } }
           component="polygon"
-          points={ startingPoints }
+          points={ this.startingPoints }
           attr="attr"
         />
-        {/**
-        <polygon
-          ratios={ polygonPoints }
-          fill={ colors.polygonColor }
-          stroke={ colors.strokeColor }
-          strokeWidth={ 1 }
-          fillOpacity={ 0.5 }
-        />
-       */}
-        {pointsToPlot.map(point => (
+        {this.pointsToPlot.map(point => (
           <ValueCircle
             key={ point.key }
             point={ {

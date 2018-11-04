@@ -17,14 +17,14 @@ const points = (
         isNil(scale) || isNil(offsetAngle)
           ? acc
           : acc.push({
-              x: scale(value) * Math.cos(offsetAngle - Math.PI / 2),
-              y: scale(value) * Math.sin(offsetAngle - Math.PI / 2),
-              value,
-              label: data.keyLabels[variableKey],
-              setKey: key,
-              variableKey,
-              key: `${key}--${variableKey}`
-            }),
+            x: scale(value) * Math.cos(offsetAngle - Math.PI / 2),
+            y: scale(value) * Math.sin(offsetAngle - Math.PI / 2),
+            value,
+            label: data.keyLabels[variableKey],
+            setKey: key,
+            variableKey,
+            key: `${key}--${variableKey}`
+          }),
         acc
       );
     }, []);

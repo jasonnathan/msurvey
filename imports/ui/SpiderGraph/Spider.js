@@ -21,11 +21,10 @@ type Props = {
 
 function convertData(props) {
   const { data, width, height, padding, domainMax } = props;
-  const innerHeight = height - padding * 2;
-  const innerWidth = width - padding * 2;
+  const innerHeight = (height - padding * 2) / 2;
+  const innerWidth = (width - padding * 2) / 2;
 
-  const radius =
-    (Math.ceil(Math.min(innerWidth / 2, innerHeight / 2) ) + 1) * 1.3;
+  const radius = (Math.ceil(Math.min(innerWidth, innerHeight)) + 1) * 1.3;
   const computedScales = makeScales(data.keyLabels, domainMax, radius);
 
   const angleSliceRadians = (Math.PI * 2) / data.keyLabels.length;
