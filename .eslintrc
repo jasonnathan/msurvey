@@ -16,7 +16,7 @@
   },
   "plugins": ["flowtype", "react", "babel"],
   "rules": {
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 2 }],
     "react/display-name": [0],
     "no-console": [
       "error",
