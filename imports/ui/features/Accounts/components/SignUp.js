@@ -6,14 +6,20 @@
  */
 import React from 'react';
 import { Link } from '@react-navigation/web';
+import { connect } from 'react-redux';
 
-import Form from '/imports/ui/components/Form';
-import FloatingLabelInput from '/imports/ui/components/FloatingLabelInput';
+import Form, { FloatingLabelInput, init } from '/imports/ui/features/Form';
 
-export default class SignUp extends React.PureComponent {
+class SignUp extends React.PureComponent {
   static defaultProps = {
     errorMessage: null
   };
+
+  constructor(props) {
+    super(props);
+    props.init('SignUp');
+  }
+
   showError = () => {
     const { errorMessage } = this.props;
     return errorMessage ? (
@@ -29,7 +35,12 @@ export default class SignUp extends React.PureComponent {
       <div className="col s12 m8 l6 offset-m2 offset-l3">
         <h4 className="light-blue-text text-lighten-1">Welcome to MSurvey!</h4>
         {this.showError()}
-        <Form className="z-depth-1 bordered slim" method="post" id="signUpForm">
+        <Form
+          name="SignUp"
+          className="z-depth-1 bordered slim"
+          method="post"
+          id="signUpForm"
+        >
           <br />
           <FloatingLabelInput
             required
@@ -37,7 +48,6 @@ export default class SignUp extends React.PureComponent {
             labelClassName="col s12"
             name="username"
             type="email"
-            errorMessage="Please enter a valid email address"
             containerClassName="input-field suffix col s12"
           />
           <FloatingLabelInput
@@ -76,3 +86,8 @@ SignUp.navigationOptions = {
   title: 'Sign Up',
   linkName: 'Sign Up'
 };
+
+export default connect(
+  null,
+  dispatch => ({ init: name => dispatch(init(name)) })
+)(SignUp);

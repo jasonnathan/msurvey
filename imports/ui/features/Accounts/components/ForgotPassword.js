@@ -6,17 +6,23 @@
  */
 import React from 'react';
 import { Link } from '@react-navigation/web';
+import { connect } from 'react-redux';
 
-import Form from '/imports/ui/components/Form';
+import Form, { FloatingLabelInput, init } from '/imports/ui/features/Form';
 import CenteredCircularLoading from '/imports/ui/components/CenteredCircularLoading';
-import FloatingLabelInput from '/imports/ui/components/FloatingLabelInput';
 
-export default class ForgotPassword extends React.PureComponent {
+class ForgotPassword extends React.PureComponent {
   static defaultProps = {
     isProcessing: false,
     isSuccess: false,
     errorMessage: null
   };
+
+  constructor(props) {
+    super(props);
+    props.init('ForgotPassword');
+  }
+
   showLoading = () => (
     <div>
       <h4 className="light-blue-text text-lighten-1">
@@ -69,6 +75,7 @@ export default class ForgotPassword extends React.PureComponent {
           </h4>
           {this.showError()}
           <Form
+            name="ForgotPassword"
             onSubmit={ () => console.log('submitted') }
             className="z-depth-1 bordered slim"
             method="post"
@@ -91,7 +98,7 @@ export default class ForgotPassword extends React.PureComponent {
             >
               Reset my Password
             </button>
-            <Link routeName="SignUp">Back to Sign In</Link>
+            <Link routeName="Login">Back to Sign In</Link>
           </Form>
         </div>
       )
@@ -99,8 +106,14 @@ export default class ForgotPassword extends React.PureComponent {
   }
 }
 
-ForgotPassword.path = 'resetPassword';
+ForgotPassword.path = 'forgotPassword';
 ForgotPassword.navigationOptions = {
   title: 'Reset Password',
   linkName: 'Reset Password'
 };
+
+
+export default connect(
+  null,
+  dispatch => ({ init: name => dispatch(init(name)) })
+)(ForgotPassword);

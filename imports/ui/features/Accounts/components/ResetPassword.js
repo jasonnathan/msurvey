@@ -5,14 +5,20 @@
  * @version  1.0
  */
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Form from '/imports/ui/components/Form';
-import FloatingLabelInput from '/imports/ui/components/FloatingLabelInput';
+import Form, { FloatingLabelInput, init } from '/imports/ui/features/Form';
 
-export default class ResetPassword extends React.PureComponent {
+class ResetPassword extends React.PureComponent {
   static defaultProps = {
     errorMessage: null
   };
+
+  constructor(props) {
+    super(props);
+    props.init('ResetPassword');
+  }
+
   showError = () => {
     const { errorMessage } = this.props;
     return errorMessage ? (
@@ -29,6 +35,7 @@ export default class ResetPassword extends React.PureComponent {
         <h4 className="light-blue-text text-lighten-1">Reset your password</h4>
         {this.showError()}
         <Form
+          name="ResetPassword"
           className="z-depth-1 bordered slim"
           method="post"
           id="resetpasswordForm"
@@ -71,3 +78,7 @@ ResetPassword.navigationOptions = {
   title: 'Reset Password',
   linkName: 'Reset Password'
 };
+export default connect(
+  null,
+  dispatch => ({ init: name => dispatch(init(name)) })
+)(ResetPassword);

@@ -6,17 +6,22 @@
  */
 import React from 'react';
 import { Link } from '@react-navigation/web';
+import { connect } from 'react-redux';
 
-import Form from '/imports/ui/components/Form';
-import FloatingLabelInput from '/imports/ui/components/FloatingLabelInput';
+import Form, { FloatingLabelInput, init } from '/imports/ui/features/Form';
 import CenteredCircularLoading from '/imports/ui/components/CenteredCircularLoading';
 
-export default class Login extends React.PureComponent {
+class Login extends React.PureComponent {
   static defaultProps = {
     title: 'Please sign in to continue',
     isProcessing: false,
     errorMessage: null
   };
+
+  constructor(props) {
+    super(props);
+    props.init('Login');
+  }
 
   showLoading = () => (
     <div>
@@ -33,9 +38,7 @@ export default class Login extends React.PureComponent {
     return errorMessage ? (
       <p className="text-default red-text">{errorMessage}</p>
     ) : (
-      <p className="text-default grey-text">
-        MSurvey is currently is private beta
-      </p>
+      <p className="text-default grey-text">MSurvey is currently in beta</p>
     );
   };
   render() {
@@ -46,7 +49,12 @@ export default class Login extends React.PureComponent {
       <div className="col s12 m8 l6 offset-m2 offset-l3">
         <h4 className="light-blue-text text-lighten-1">{title}</h4>
         {this.showError()}
-        <Form className="z-depth-1 bordered slim" method="post" id="loginForm">
+        <Form
+          name="Login"
+          className="z-depth-1 bordered slim"
+          method="post"
+          id="loginForm"
+        >
           <br />
           <FloatingLabelInput
             required
@@ -54,7 +62,6 @@ export default class Login extends React.PureComponent {
             labelClassName="col s12"
             name="username"
             type="email"
-            errorMessage="Please enter a valid email address"
             containerClassName="input-field suffix col s12"
           />
           <FloatingLabelInput
@@ -63,8 +70,7 @@ export default class Login extends React.PureComponent {
             labelClassName="col s12"
             name="password"
             type="password"
-            pattern=".{8,}"
-            errorMessage="Your password should be at least 8 characters long"
+            errorMessage="This is a required field"
             containerClassName="input-field suffix col s12"
           />
           <button
@@ -84,3 +90,8 @@ Login.navigationOptions = {
   title: 'Sign In',
   linkName: 'Sign In'
 };
+
+export default connect(
+  null,
+  dispatch => ({ init: name => dispatch(init(name)) })
+)(Login);
